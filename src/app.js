@@ -19,7 +19,7 @@ app.get('/api/weather', (req, res) => {
 
   geocode.geocodeAddress(argv, (errMsgs, results) => {
     if (errMsgs) {
-      console.log(errMsgs);
+      res.send({ error: errMsgs });
     } else {
       const weatherReq = {
         apiKey2: argv.apiKey2,
@@ -28,7 +28,7 @@ app.get('/api/weather', (req, res) => {
       };
       weather.getWeather(weatherReq, (errMsgs, results) => {
         if (errMsgs) {
-          console.log(errMsgs);
+          res.send({ error: errMsgs });
         } else {
           res.send({
             location: req.query.address,
